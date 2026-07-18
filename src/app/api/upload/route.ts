@@ -34,8 +34,10 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Ensure public/uploads directory exists
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+    // Ensure uploads directory exists
+    const uploadDir = process.env.NODE_ENV === 'production'
+      ? '/app/data/uploads'
+      : path.join(process.cwd(), 'public', 'uploads');
     await mkdir(uploadDir, { recursive: true });
 
     // Generate unique name to prevent caching issues

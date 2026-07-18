@@ -9,7 +9,10 @@ export async function getDb(): Promise<Database> {
     return dbInstance;
   }
 
-  const dbPath = path.join(process.cwd(), 'database.sqlite');
+  const dbFolder = process.env.NODE_ENV === 'production' 
+    ? '/app/data' 
+    : process.cwd();
+  const dbPath = path.join(dbFolder, 'database.sqlite');
   
   dbInstance = await open({
     filename: dbPath,

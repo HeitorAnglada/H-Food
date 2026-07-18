@@ -20,9 +20,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Arquivo não especificado' }, { status: 400 });
     }
 
-    // Prevenir directory traversal
     const safeFilename = path.basename(fileParam);
-    const filePath = path.join(process.cwd(), 'public', 'uploads', safeFilename);
+    const uploadDir = process.env.NODE_ENV === 'production'
+      ? '/app/data/uploads'
+      : path.join(process.cwd(), 'public', 'uploads');
+    const filePath = path.join(uploadDir, safeFilename);
 
     try {
       const fileBuffer = await readFile(filePath);
