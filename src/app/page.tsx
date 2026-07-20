@@ -1267,7 +1267,7 @@ export default function Home() {
           <div className="flex items-center gap-1.5 font-semibold text-zinc-400">
             LASSE Food — Desenvolvido para o LASSE ☕️
           </div>
-          <p>© 2026 LASSE. Sistema de pedidos baseado na confiança mútua.</p>
+          <p>© 2026 LASSE. Sistema de pedidos.</p>
         </div>
       </footer>
 
